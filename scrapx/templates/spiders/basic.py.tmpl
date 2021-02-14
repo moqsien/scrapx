@@ -1,0 +1,67 @@
+import time
+import re
+import os
+
+import scrapy
+from scrapx.crawler_base.base import BaseSpider
+
+
+class ${ProjectName}Item(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+
+    _id = scrapy.Field()
+    spider_id = scrapy.Field()
+    item_id = scrapy.Field()
+    url = scrapy.Field()
+    list_html = scrapy.Field()
+    html_text = scrapy.Field()
+    update_time = scrapy.Field()
+    create_time = scrapy.Field()
+    attach_file = scrapy.Field()
+
+
+class $classname(BaseSpider):
+    name = '$name'
+    allowed_domains = []
+
+    site_url = '$domain'
+    start_urls = ['http://$domain']
+
+    def __init__(self, name=None, **kwargs):
+        super($classname, self).__init__(name=name, **kwargs)
+        self.page_url = ''
+
+        self.bot_name = None
+    
+    def start_requests(self):
+        for url in self.start_urls:
+            request = scrapy.Request(url, callback=self.parse, dont_filter=True)
+            yield request
+
+    def parse(self, response):
+        self.bot_name = self.crawler.settings.get('BOT_NAME')
+        if self.settings.get('INCREMENT'):
+            total_page = 1
+        else:
+            total_page = 100
+        for page in range(1, total_page + 1):
+            request = scrapy.Request(url=self.page_url % page, callback=self.parse_page, dont_filter=True)
+            yield request
+
+    def parse_page(self, response):
+        label_list = response.xpath('')
+        for label in label_list:
+            item = ${ProjectName}Item()
+            item['list_html'] = label.get()
+            url = label.xpath('./').get()
+            request = scrapy.Request(url=url, callback=self.parse_detail, dont_filter=True)
+            request.meta['data'] = item
+            yield request
+
+    def parse_detail(self, response):
+        item = response.meta['data']
+        item['url'] = response.url
+        item['item_id'] = re.search(r'', response.url).group(1)
+        item['html_text'] = response.xpath('').get()
+        yield item
