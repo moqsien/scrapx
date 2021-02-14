@@ -17,9 +17,15 @@ scrapx 是一个基于 scrapy 的定制包。其主要特点有：
 ### 如何使用 scrapx？
 
 - clone 代码
+
+```bash
+git clone git@github.com:moqsien/scrapx.git
+```
+
 - 安装
 
 ```bash
+cd scrapx
 python setup.py build
 python setup.py install
 ```
