@@ -25,9 +25,12 @@ git clone git@github.com:moqsien/scrapx.git
 - 安装
 
 ```bash
+# from source
 cd scrapx
 python setup.py build
 python setup.py install
+# from pypi
+pip install scrapx
 ```
 
 - 创建 workspace
