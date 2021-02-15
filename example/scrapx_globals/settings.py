@@ -1,3 +1,6 @@
+# workspace
+WORKSPACE_NAME = "example"
+
 # mongo params for production env
 MONGO_PARAMS = {
     'host': 'localhost',
