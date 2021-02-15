@@ -53,6 +53,16 @@ scrapx genspider $spider_name $domain
 
 - 接着就是根据用户自己的情况修改 scrapx_globals 的一些公共配置（如 MongoDB 参数等）、修改 run_xxx.py 中的 CRAWLER_INFO 等配置、编写爬虫，最后调试和运行。
 
+- 命令行运行 spider
+
+```bash
+scrapx crawl tzrb # in a project
+# or
+scrapx crawl test1.tzrb # in a workspace
+# or
+# you can just run the run_xxx.py in an IDE
+```
+
 ### scrapx 的目标
 
 减少大型爬虫项目的冗余代码，方便管理和维护。
