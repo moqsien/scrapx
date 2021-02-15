@@ -3,3 +3,10 @@ __pycache__/
 .vscode
 .idea
 test.py
+build/*
+dist/*
+build
+dist
+*.egg*/
+*.egg*
+install.sh

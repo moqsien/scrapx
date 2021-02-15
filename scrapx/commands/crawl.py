@@ -33,6 +33,9 @@ class Command(BaseRunSpiderCommand):
         _attr_list = [i for i in dir(run_file_module) if i.isupper()]
         for _attr in _attr_list:
             _settings[_attr] = getattr(run_file_module, _attr)
+        is_debug = _settings.get('DEBUG')
+        if not is_debug:
+            _settings['LOG_LEVEL'] = 'INFO'
         return _settings
 
     def add_options(self, parser):
