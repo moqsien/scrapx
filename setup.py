@@ -45,11 +45,11 @@ else:
 setup(
     name='Scrapx',
     version=version,
-    url='https://scrapy.org',
+    url='https://github.com/moqsien/scrapx',
     project_urls={
-        'Documentation': 'https://docs.scrapy.org/',
-        'Source': 'https://github.com/scrapy/scrapy',
-        'Tracker': 'https://github.com/scrapy/scrapy/issues',
+        'Documentation': 'https://github.com/moqsien/scrapx/blob/main/README.md',
+        'Source': 'https://github.com/moqsien/scrapx',
+        'Tracker': 'https://docs.scrapy.org/',
     },
     description='A customized version of Scrapy',
     long_description=open('DESCRIPTION.rst').read(),
