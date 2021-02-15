@@ -50,6 +50,9 @@ class BaseSpider(Spider):
             if mongo_params and not self._crawlers_info_collection:
                 self._set_mongo_connection(mongo_params)
                 self._crawlers_info_collection = self._mongodb[mongo_db]['crawlers_info']
+        project_name = crawler.settings.get('BOT_NAME')
+        spider_name = self.name
+        spider_path = f'{project_name}.{spider_name}'
         # upsert crawler info
         if crawler and self._crawlers_info_collection:
             crawler_info = crawler.settings.getdict('CRAWLER_INFO')
@@ -60,6 +63,8 @@ class BaseSpider(Spider):
             _time = int(time.time())
             _info_item['update_time'] = _time
             _info_item['desc'] = crawler_info.get('desc', '')
+            _info_item['spider_path'] = spider_path
+            _info_item['workspace'] = crawler.settings.get('WORKSPACE_NAME', '')
             if not _info_item['desc']:
                 raise UsageError('Please check your run file, "desc" can not be None')
             _info_item['data_type'] = crawler_info.get('data_type', 0)
