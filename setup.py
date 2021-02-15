@@ -52,7 +52,7 @@ setup(
         'Tracker': 'https://docs.scrapy.org/',
     },
     description='A customized version of Scrapy',
-    long_description=open('DESCRIPTION.rst').read(),
+    long_description=open('README.rst').read(),
     author='MoQsien',
     maintainer='MoQsien',
     maintainer_email='moqsien@foxmail.com',
@@ -64,7 +64,7 @@ setup(
         'console_scripts': ['scrapx = scrapx.cmdline:execute']
     },
     classifiers=[
-        'Framework :: Scrapx',
+        'Framework :: Scrapy',
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
