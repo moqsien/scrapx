@@ -21,6 +21,7 @@ def has_environment_marker_platform_impl_support():
 install_requires = [
     'scrapy>=2.4.1',
     'pymongo>=3.11.2',
+    'chompjs>=1.0.16'
 ]
 extras_require = {}
 cpython_dependencies = [
