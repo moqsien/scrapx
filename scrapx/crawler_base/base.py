@@ -5,6 +5,7 @@ import pymongo
 from os.path import join, exists
 from scrapy.spiders import Spider
 from scrapy.exceptions import UsageError
+from scrapx.utils.extra import parse_js_object
 
 
 class BaseSpider(Spider):
@@ -17,6 +18,7 @@ class BaseSpider(Spider):
         self._first_re = re.compile(r'(.)([A-Z][a-z]+)')
         self._all_re = re.compile(r'([a-z0-9])([A-Z])')
         self._file_dir = None
+        self.parse_js_object = parse_js_object
 
     def _get_file_dir(self, crawler, spider):
         # where to save attach files
