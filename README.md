@@ -19,16 +19,16 @@ scrapx 是一个基于 scrapy 的定制包。其主要特点有：
 - clone 代码
 
 ```bash
+# install form source
 git clone git@github.com:moqsien/scrapx.git
+cd scrapx
+python setup.py build
+python setup.py install
 ```
 
 - 安装
 
 ```bash
-# from source
-cd scrapx
-python setup.py build
-python setup.py install
 # from pypi
 pip install scrapx
 ```
@@ -52,6 +52,21 @@ scrapx genproject test1
 ```bash
 cd test1
 scrapx genspider $spider_name $domain
+```
+
+- 安装本地测试mongodb(docker)
+```bash
+docker pull mongo:latest
+
+docker run -itd --name mongo -p 27017:27017 -v ~/mongodb:/data/db mongo --auth
+
+docker exec -it mongo mongo admin
+
+# authorization configure
+db.createUser({ user:'admin',pwd:'654321',roles:[ { role:'userAdminAnyDatabase', db: 'admin'}]});
+db.auth("admin", "654321")
+db.grantRolesToUser("admin", [ { role: "readWrite", db: "crawler" } ])
+db.grantRolesToUser("admin", [ { role: "readWrite", db: "crawler_statistic" } ])
 ```
 
 - 接着就是根据用户自己的情况修改 scrapx_globals 的一些公共配置（如 MongoDB 参数等）、修改 run_xxx.py 中的 CRAWLER_INFO 等配置、编写爬虫，最后调试和运行。
