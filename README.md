@@ -81,6 +81,9 @@ scrapx crawl test1.tzrb # in a workspace
 # you can just run the run_xxx.py in an IDE
 ```
 
+- mongodb效果
+![avatar](https://github.com/moqsien/scrapx/blob/main/docs/mongodb.png)
+
 ### scrapx 的目标
 
 减少大型爬虫项目的冗余代码，方便管理和维护。
