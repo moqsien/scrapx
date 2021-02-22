@@ -7,6 +7,9 @@ scrapx 是一个基于 scrapy 的定制包。其主要特点有：
   - 采用三层目录，分别是 workspace、project、spiders。其中 workspace 作为整个爬虫项目的目录，其下自动生成一个 scrapx_globals 目录用于存放整个爬虫项目都能自动加载的配置、中间件、pipeline 等。project 必须在 workspace 模块中。具体的爬虫则放在 project 下的 spiders 模块中。
 - 去除了一些相对冗余的文件
   - 例如，在 project 中不再有 settings.py、pipeline.py、middleware.py 等文件。而是将 pipeline 和 middleware 统一放在 scrapx_globals，便于大项目的统一管理。原来的 settings.py 变为 run_xxx.py，同时自动生成的 run_xxx.py 更便于在 IDE 中以脚本形式运行，方便调试。item.py与spider放在一起，方便开发时随时修改。
+  - 如果需要集成错误日志收集服务，则可把相应中间件放在scpax_globals中
+  - 代理中间件也可以放在scrpax_globals中，在相应的run_xxx.py中可以根据需要随时调用
+  - 只要中间件设计得足够通用，可以减少很多冗余代码
 - 大量爬虫管理方案
   - 使用 MongoDB 作为存储 DB。在使用模板生成爬虫时，自动生成爬虫相关信息，修改之后，在爬虫第一次运行时，自动将爬虫信息存入 MongoDB，并自动生成一个唯一 id 用于标识该爬虫。每一次爬虫运行完毕，自动记录该次运行的统计数据到 MongoDB。一个 project，设计为同一类 data_type，用于归类不同类型的数据。
 - 定制脚手架命令
